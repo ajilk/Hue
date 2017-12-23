@@ -1,4 +1,4 @@
-# Hue
+# Hue ![HUE](Logo.png)
 An application demonstrating color capabilities offered by the ncurses library 
 
 ---
