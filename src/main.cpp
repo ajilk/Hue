@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <fstream>
+#include <stdlib.h>
 #include "Color.h"
 #include "Screen.h"
 #include "Rectangle.h"
@@ -7,9 +8,48 @@
 
 int main(){
 	Screen screen;
+	ifstream infile; 
+	infile.open("../files/1.txt");
+	if(!infile.is_open()){
+		printw("ERROR: Unable to open file");
+		screen.~Screen();
+		exit(EXIT_FAILURE);
+	}
+	Color colors[6];
+	int mode;
+	int i=0;	
+	infile >> mode;
+	while(!infile.eof() && i<6){
+		infile >> colors[i].r; 
+		infile >> colors[i].g;
+		infile >> colors[i].b;
+		colors[i].convert();
+		i++;
+	}
+	
 	Coordinate center(screen.getRows()/2, screen.getColumns()/2);
+	Rectangle r1(5, 11); Coordinate cr1(center.getY(), center.getX()-r1.getWidth()/2);
+	
+	init_pair(1, COLOR_WHITE, COLOR_WHITE);
+	int choice=1;
+	while(!screen.kbhit()){
+		switch(choice){
+			case 1: {
+				if(i >= 6) choice = 2;
+				else i++;
+			} break;
+			
+			case 2: {
+				if(i <=0) choice = 1;
+				else i--;
+			} break;	
+		}
+		init_color(COLOR_WHITE, colors[i].r, colors[i].g, colors[i].b);
+		r1.print(screen, cr1, 1);
+		napms(100);
+	}
 
-	Rectangle r1(1,11); Coordinate cr1(center.getY(), center.getX()-r1.getWidth()/2);
+/*
 	Rectangle r2(1,11); Coordinate cr2(center.getY()+1, center.getX()-r2.getWidth()/2);
 	Rectangle r3(1,11); Coordinate cr3(center.getY()+2, center.getX()-r3.getWidth()/2);	
 	Rectangle r4(1,11); Coordinate cr4(center.getY()+3, center.getX()-r4.getWidth()/2);
@@ -53,7 +93,7 @@ int main(){
 			} choice=1; break;
 		}
 	}
-	
+*/	
 	return 0;
 }
 

@@ -5,13 +5,17 @@
 using namespace std;
 
 class Color{
-private:
-	string hex;
+public:
 	short r;
 	short g;
-	short b;	
-public:
-	Color(string hex, short r, short g, short b) : hex(hex), r(r), g(g), b(b) {}
+	short b;
+	Color() { r=0; g=0; b=0; }	
+	Color(short r, short g, short b) : r(r), g(g), b(b) {}
+	void convert() {
+		r *= 3.9015;
+		g *= 3.9015;
+		b *= 3.9015;
+	}
 };
 
 #endif

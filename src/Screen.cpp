@@ -12,14 +12,14 @@ Screen::Screen(){
 		refresh();
 		getch();
 		endwin();
-		//exit (EXIT_FAILURE);
+		exit (EXIT_FAILURE);
 	}else if(!can_change_color()){
 		clear();
 		mvprintw(0,0,"ERROR: TERMINAL CAN NOT CHANGE COLOR");
 		refresh();
 		getch();
 		endwin();
-		//exit (EXIT_FAILURE);	
+		exit (EXIT_FAILURE);	
 	}else
 		start_color();
 	nodelay(stdscr, TRUE);
