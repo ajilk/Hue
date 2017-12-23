@@ -1,23 +1,27 @@
 #include <ncurses.h>
+#include <fstream>
 #include "Color.h"
 #include "Screen.h"
-void print(int num){
-	attron(COLOR_PAIR(num));
-	mvprintw(0,0, "     ");
-	mvprintw(1,0, "     ");
-	attroff(COLOR_PAIR(num));
-	refresh();
-	napms(1);
-}
+#include "Rectangle.h"
+#include "Coordinate.h"
+
 int main(){
-	//init_pair(1, COLOR_WHITE, COLOR_WHITE);
-	//for(int i=0; i<1000; i++){
-	//	init_color(COLOR_WHITE, i, i, i);
-//		print(1);
-//	}
 	Screen screen;
-	printw("ROW:%d\tCOL:%d", screen.getRows(),screen.getColumns());	
+
+	int X=screen.getColumns()/2;
+	int Y=screen.getRows()/2;
+	Coordinate center(Y, X);
+	Rectangle rectangle(1,11);
+	
+	init_pair(1, COLOR_WHITE, COLOR_WHITE);
+	init_pair(2, COLOR_BLUE, COLOR_BLUE);
+	for(int i=0; i<1000; i++){
+		init_color(COLOR_WHITE, i, i, i);
+		rectangle.print(screen, *(new Coordinate(Y,X)), 1);
+		napms(1);	
+	}
+
+	//printw("ROW:%d\tCOL:%d", screen.getRows(),screen.getColumns());	
 	return 0;
 }
-
 

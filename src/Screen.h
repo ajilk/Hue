@@ -11,6 +11,8 @@ public:
 	Screen();
 	int getRows();
 	int getColumns();
+	bool kbhit();
+	void drawChar(int Y, int X, char ch);
 	~Screen();
 };
 

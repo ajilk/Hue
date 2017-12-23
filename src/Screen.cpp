@@ -22,7 +22,7 @@ Screen::Screen(){
 		//exit (EXIT_FAILURE);	
 	}else
 		start_color();
-	nodelay(stdscr, TRUE);	
+	nodelay(stdscr, TRUE);
 }
 
 int Screen::getRows(){
@@ -31,6 +31,21 @@ int Screen::getRows(){
 
 int Screen::getColumns(){
 	return columns;
+}
+
+bool Screen::kbhit(){
+	int ch=getch();
+	if(ch != ERR){
+		ungetch(ch);
+		return true;
+	}
+	else
+		return false;
+}
+
+void Screen::drawChar(int Y, int X, char ch){
+	mvaddch(Y, X, ch); 
+	refresh();
 }
 
 Screen::~Screen(){
