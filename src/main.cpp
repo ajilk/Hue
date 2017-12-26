@@ -8,13 +8,77 @@
 
 int main(){
 	Screen screen;
+	int centerX = screen.getRows()/2;
+	int centerY = screen.getColumns()/2;
 	ifstream infile; 
-	infile.open("../files/1.txt");
+	infile.open("../files/3.txt");
 	if(!infile.is_open()){
 		printw("ERROR: Unable to open file");
 		screen.~Screen();
 		exit(EXIT_FAILURE);
 	}
+	int length = 8;
+	int width = 16;
+	Rectangle rectangle[8][16];
+	Coordinate coordinate[8][16];
+	for(int i=0; i<length; i++){
+		for(int j=0; j<width; j++){
+			coordinate[i][j].setX(centerX-5+j);
+			coordinate[i][j].setY(centerY-2+i);
+		}
+	}
+	Color color;
+	int pairNum = 0;
+	init_pair(0, COLOR_BLACK, COLOR_BLACK);
+      init_pair(1, COLOR_RED, COLOR_RED);
+      init_pair(2, COLOR_GREEN, COLOR_GREEN);
+      init_pair(3, COLOR_YELLOW, COLOR_YELLOW);
+      init_pair(4, COLOR_BLUE,  COLOR_BLUE);
+      init_pair(5, COLOR_MAGENTA, COLOR_MAGENTA);
+      init_pair(6, COLOR_CYAN,  COLOR_CYAN);
+	init_pair(7, COLOR_WHITE, COLOR_WHITE);	
+	
+	int mode = 49;
+	while(mode != 'X' && mode != 'x'){	
+		while(!screen.kbhit()){
+			switch(mode){
+				case 49:
+					for(int i=0; i<length; i++){
+						infile >> color.r >> color.g >> color.b; color.convert(); 
+						init_color(i, color.r, color.g, color.b);
+						for(int j=0; j<width; j++){
+							rectangle[i][j].print(screen, coordinate[i][j], pairNum); 
+						} 
+					 	pairNum++; napms(500);
+					}
+					pairNum = 0; infile.close(); infile.open("../files/3.txt");
+					for(int i=length-1; i>=0; i--){
+						infile >> color.r >> color.g >> color.b; color.convert();
+						init_color(i, color.r, color.g, color.b);
+						for(int j=width-1; j>=0; j--){
+							rectangle[i][j].print(screen, coordinate[i][j], pairNum); 
+						} 
+					 	pairNum++; napms(500);
+					}
+
+							
+
+
+					break; 
+				case 50: break;
+				default: break;
+			}
+		}
+		mode = getch();
+	}
+
+
+
+
+
+
+
+/*
 	Color colors[6];
 	int mode;
 	int i=0;	
@@ -28,9 +92,9 @@ int main(){
 	}
 	
 	Coordinate center(screen.getRows()/2, screen.getColumns()/2);
-	Rectangle r1(5, 11); Coordinate cr1(center.getY(), center.getX()-r1.getWidth()/2);
+	Rectangle r1(4, 10);Coordinate cr1(center.getY()-r1.getLength()/2, center.getX()-r1.getWidth()/2);
 	
-	init_pair(1, COLOR_WHITE, COLOR_WHITE);
+	init_pair(2, COLOR_BLACK, COLOR_BLACK);
 	int choice=1;
 	while(!screen.kbhit()){
 		switch(choice){
@@ -44,10 +108,11 @@ int main(){
 				else i--;
 			} break;	
 		}
-		init_color(COLOR_WHITE, colors[i].r, colors[i].g, colors[i].b);
-		r1.print(screen, cr1, 1);
+		init_color(COLOR_BLACK, colors[i].r, colors[i].g, colors[i].b);
+		r1.print(screen, cr1, 2);
 		napms(100);
 	}
+*/
 
 /*
 	Rectangle r2(1,11); Coordinate cr2(center.getY()+1, center.getX()-r2.getWidth()/2);

@@ -6,6 +6,9 @@ Screen::Screen(){
 	curs_set(0);
 	cbreak();
 	noecho();
+	use_default_colors();
+	border(ACS_VLINE, ACS_VLINE, ACS_HLINE, ACS_HLINE, 
+			ACS_ULCORNER, ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER);
 	if(!has_colors()){
 		clear();
 		mvprintw(0,0,"ERROR: TERMINAL DOES NOT SUPPORT COLOR");
