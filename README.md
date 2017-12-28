@@ -3,7 +3,7 @@ An application demonstrating color capabilities of the ncurses library
 
 <br/>
 <br/>
-![demo](https://github.com/azimex/Hue/blob/master/demo.gif)
+![demo](demo.gif)
 
 Colors are read from a file which offers the advantage of changing up
 the sequence of colors in any way desired.
