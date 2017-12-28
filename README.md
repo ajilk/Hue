@@ -1,9 +1,9 @@
 # Hue  <img src="Logo.png" width="70" />
 An application demonstrating color capabilities of the ncurses library 
 
-<br\>
-<br\>
-![demo](htttp://github.com/azimex/demo.gif)
+<br/>
+<br/>
+![demo](https://github.com/azimex/Hue/blob/master/demo.gif)
 
 Colors are read from a file which offers the advantage of changing up
 the sequence of colors in any way desired.
