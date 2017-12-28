@@ -1,6 +1,6 @@
 # Hue  <img src="Logo.png" width="70" />
 An application demonstrating color capabilities of the ncurses library
-<br/> <img src="demo.gif" width="400" /> <br/>
+<br/> <br/> <img src="demo.gif" width="400" /> <br/> <br/>
 Colors are read from a file which offers the advantage of changing up
 the sequence of colors in any way desired.
 Looking at the source code it is visibile that flexibilty was the main key 
@@ -8,7 +8,6 @@ behind the purpose of the project. For example, different sizes of rectangles ca
 multiple times at different coordinates. 
 Current project only demonstrates one shpe to view 
 series of colors but new shapes can be added and managed easily.
-
 
 ## To run the program <br/>
 Make sure NUCRSES is installed and set up <br/>
