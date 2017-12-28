@@ -13,7 +13,7 @@ int main(){
 	int centerX = screen.getColumns()/2;
 	int centerY = screen.getRows()/2;
 	ifstream infile; 
-	string filename = "../files/2.txt";
+	string filename = "../files/1.txt";
 	infile.open(filename);
 	if(!infile.is_open()){
 		printw("ERROR: Unable to open file");
@@ -44,7 +44,7 @@ int main(){
 	init_pair(6, COLOR_CYAN,  COLOR_CYAN);
 	init_pair(7, COLOR_WHITE, COLOR_WHITE);	
 
-	int mode;
+	int mode = 'h';
 	int pairNum = 1;
 	bool running = true;
 	while(running){
