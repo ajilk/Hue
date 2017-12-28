@@ -25,7 +25,7 @@ A - Extra fun mode
 ## Observations 
 There were limitations. But it is not too much of a limitation but something to notice.
 There can only be ONE DEFINITION of color at a time. Lets say you redefine color red and print something 
-using that color, the moment you redefine the red, everything that was printed in red will be updated
+using that color, the moment you redefine the color red, everything that was printed in red will be updated
 to the new definition of red, which is sometimes be something you do not want. In order to lessen this
 limitation, I used 6 different colors and redefined them, so they won't affect each other. In other
 words, I was able to get 6 shades of one color in one time. Although, this project really doesn't push
