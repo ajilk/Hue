@@ -13,7 +13,7 @@ int main(){
 	int centerX = screen.getColumns()/2;
 	int centerY = screen.getRows()/2;
 	ifstream infile; 
-	string filename = "../files/22txt";
+	string filename = "../files/2.txt";
 	infile.open(filename);
 	if(!infile.is_open()){
 		printw("ERROR: Unable to open file");
