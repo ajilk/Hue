@@ -13,7 +13,7 @@ int main(){
 	int centerX = screen.getColumns()/2;
 	int centerY = screen.getRows()/2;
 	ifstream infile; 
-	string filename = "../files/3.txt";
+	string filename = "../files/22txt";
 	infile.open(filename);
 	if(!infile.is_open()){
 		printw("ERROR: Unable to open file");
@@ -95,6 +95,17 @@ int main(){
 							rectangle[i][j].print(screen, coordinate[i][j], pairNum);
 						}napms(25);
 					}break;	
+				case 'a':
+				case 'A':
+					for(int i=0, j=0; i<LENGTH; i++, j+=2){
+						rectangle[i][j].print(screen, coordinate[i][j], pairNum);
+						napms(25);
+					}
+					for(int i=0, j=WIDTH-1; i<LENGTH; i++, j-=2){
+						rectangle[i][j].print(screen, coordinate[i][j], pairNum);
+						napms(25);
+					}
+					break;
 				//Front to back	
 				default:	
 					for(int i=0; i<LENGTH; i++){
