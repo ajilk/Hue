@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include <fstream>
 #include <stdlib.h>
+#include <vector>
 #include "Color.h"
 #include "Screen.h"
 #include "Rectangle.h"
@@ -8,8 +9,8 @@
 
 int main(){
 	Screen screen;
-	int centerX = screen.getRows()/2;
-	int centerY = screen.getColumns()/2;
+	int centerX = screen.getColumns()/2;
+	int centerY = screen.getRows()/2;
 	ifstream infile; 
 	infile.open("../files/3.txt");
 	if(!infile.is_open()){
@@ -17,10 +18,77 @@ int main(){
 		screen.~Screen();
 		exit(EXIT_FAILURE);
 	}
-	int length = 8;
-	int width = 16;
-	Rectangle rectangle[8][16];
-	Coordinate coordinate[8][16];
+	int LENGTH = 8;
+	int WIDTH = 16;
+	vector< vector<Rectangle> > rectangle;
+	vector< vector<Coordinate> > coordinate;
+	for(int i=0; i<LENGTH; i++){
+		vector<Rectangle> R_row;
+		vector<Coordinate> C_row;
+		for(int j=0; j<WIDTH; j++){
+			R_row.push_back(*(new Rectangle(1,1)));
+			C_row.push_back(*(new Coordinate(centerY-LENGTH/2+i, centerX-WIDTH/2+j)));
+		}
+		rectangle.push_back(R_row);
+		coordinate.push_back(C_row);
+	}
+	
+	Color color;	
+	init_pair(1, COLOR_RED, COLOR_RED);
+	init_pair(2, COLOR_GREEN, COLOR_GREEN);
+	init_pair(3, COLOR_YELLOW, COLOR_YELLOW);
+	init_pair(4, COLOR_BLUE,  COLOR_BLUE);
+	init_pair(5, COLOR_MAGENTA, COLOR_MAGENTA);
+	init_pair(6, COLOR_CYAN,  COLOR_CYAN);
+	init_pair(7, COLOR_WHITE, COLOR_WHITE);	
+
+	int mode = 49;
+	int pairNum = 1;
+	bool running = true;
+	while(running){
+		while(!screen.kbhit()){
+			//infile.seekg(0) won't work as intended. So file pointer is reset by closing
+			// and repopening the file
+			if(infile.eof()) {
+				infile.close(); 
+				infile.open("../files/3.txt");
+			}
+			infile >> color.r >> color.g >> color.b;
+			color.convert();
+			init_color(pairNum,  color.r, color.g, color.b);	
+
+			switch(mode){
+				case 49: 
+					for(int i=0; i<LENGTH; i++){
+						for(int j=0; j<WIDTH; j++){
+							rectangle[i][j].print(screen, coordinate[i][j], pairNum);
+						}napms(100);
+					}break;
+				case 50:
+					for(int i=LENGTH-1; i>=0; i--){
+						for(int j=WIDTH-1; j>=0; j--){
+							rectangle[i][j].print(screen, coordinate[i][j], pairNum);
+						}napms(100);
+					}break;	
+				default:	
+					for(int i=0; i<LENGTH; i++){
+						for(int j=0; j<WIDTH; j++){
+							rectangle[i][j].print(screen, coordinate[i][j], pairNum);
+						}
+					}napms(100); break;
+
+			}
+			if(pairNum >= 7) pairNum=1; else pairNum++; 
+		}
+
+		mode = getch();
+		if(mode == 'x' || mode == 'X')
+			running = false;
+	}
+	
+
+/*
+	
 	for(int i=0; i<length; i++){
 		for(int j=0; j<width; j++){
 			coordinate[i][j].setX(centerX-5+j);
@@ -29,14 +97,7 @@ int main(){
 	}
 	Color color;
 	int pairNum = 0;
-	init_pair(0, COLOR_BLACK, COLOR_BLACK);
-      init_pair(1, COLOR_RED, COLOR_RED);
-      init_pair(2, COLOR_GREEN, COLOR_GREEN);
-      init_pair(3, COLOR_YELLOW, COLOR_YELLOW);
-      init_pair(4, COLOR_BLUE,  COLOR_BLUE);
-      init_pair(5, COLOR_MAGENTA, COLOR_MAGENTA);
-      init_pair(6, COLOR_CYAN,  COLOR_CYAN);
-	init_pair(7, COLOR_WHITE, COLOR_WHITE);	
+		
 	
 	int mode = 49;
 	while(mode != 'X' && mode != 'x'){	
@@ -72,7 +133,7 @@ int main(){
 		mode = getch();
 	}
 
-
+*/
 
 
 
