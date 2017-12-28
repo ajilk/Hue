@@ -1,10 +1,6 @@
 # Hue  <img src="Logo.png" width="70" />
-An application demonstrating color capabilities of the ncurses library 
-
-<br/>
-<br/>
-![demo](demo.gif)
-![](http://i.imgur.com/60bts.gif)
+An application demonstrating color capabilities of the ncurses library
+<br/> <img src="demo.gif" width="400" /> <br/>
 Colors are read from a file which offers the advantage of changing up
 the sequence of colors in any way desired.
 Looking at the source code it is visibile that flexibilty was the main key 
