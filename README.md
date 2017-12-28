@@ -14,11 +14,13 @@ series of colors but new shapes can be added and managed easily.
 Make sure NUCRSES is installed and set up <br/>
 Clone and run make <br/>
 The run it by typing ./color <br/>
+And press X to end program
 ### To change modes  <br/>
 H - Right to Left <br/>
 J - Top to Bottom <br/>
 K - Bottom to Top <br/>
 L - Left to Right <br/> 
+A - Extra fun mode
 
 
 ## Observations 
