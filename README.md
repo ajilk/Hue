@@ -10,15 +10,15 @@ Current project only demonstrates one shpe to view
 series of colors but new shapes can be added and managed easily.
 
 
-## To run the program <br\>
-Make sure NUCRSES is installed and set up <br\>
-clone and run make <br\>
-the run it by typing ./color <br\>
-### To change modes  <br\>
-H - Right to Left <br\>
-J - Top to Bottom <br\>
-K - Bottom to Top <br\>
-L - Left to Right <br\> 
+## To run the program <br/>
+Make sure NUCRSES is installed and set up <br/>
+clone and run make <br/>
+the run it by typing ./color <br/>
+### To change modes  <br/>
+H - Right to Left <br/>
+J - Top to Bottom <br/>
+K - Bottom to Top <br/>
+L - Left to Right <br/> 
 
 
 ## Observations 
